@@ -16,6 +16,7 @@ import User from "../models/user";
 import CheckPoint from "../models/check-point";
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "../swagger";
+import cors from "cors";
 
 class Server {
   private app: Application;
@@ -48,11 +49,19 @@ class Server {
     this.app.use("/api/events", eventRoutes);
     this.app.use("/api/checkpoints", checkPointRoutes);
     this.app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
   }
 
   middlewares() {
     this.app.use(express.json());
+
+    // Configuración de CORS
+    this.app.use(
+      cors({
+        origin: "*", // Permitir solicitudes desde cualquier origen
+        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Métodos HTTP permitidos
+        allowedHeaders: ["Content-Type", "Authorization"], // Encabezados permitidos
+      })
+    );
   }
 
   async dbConnect() {

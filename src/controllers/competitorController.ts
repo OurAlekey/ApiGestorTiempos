@@ -55,6 +55,10 @@ export const getCompetitorsbyEvent = async (req: Request, res: Response) => {
           attributes: ["nombre"],
           include: [{ model: Category, attributes: ["nombre"] }],
         },
+        {
+          model: Team,
+          attributes: ["nombre"],
+        },
       ],
     });
 
