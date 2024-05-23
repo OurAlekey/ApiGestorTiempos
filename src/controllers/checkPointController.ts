@@ -67,10 +67,11 @@ export const getCheckPointByEvent = async (req: Request, res: Response) => {
 
 export const getCheckPointByUser = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { id,evtId } = req.params;
     const checkPoints = await CheckPoint.findAll({
       where: {
         id_usuario: id,
+        evento_id: evtId
       },
       include: [
         {

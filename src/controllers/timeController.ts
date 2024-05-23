@@ -3,9 +3,11 @@ import Time from "../models/time";
 import CheckPoint from "../models/check-point";
 import User from "../models/user";
 import Competitor from "../models/competitor";
+import Team from "../models/team";
 
 function isValidTime(time: string): boolean {
   const [hours, minutes, seconds] = time.split(":").map(Number);
+
   if (
     hours < 0 ||
     hours > 23 ||
@@ -91,6 +93,7 @@ export const getTimeByCompetitor = async (req: Request, res: Response) => {
         {
           model: Competitor,
           attributes: ["nombre", "numero_competido"],
+          include: [{model:Team, attributes:["nombre"]}]
         },
         {
           model: CheckPoint,

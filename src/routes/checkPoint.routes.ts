@@ -88,7 +88,7 @@ router.get("/event/:id", validateToken, getCheckPointByEvent);
 
 /**
  * @swagger
- * /api/checkpoints/user/{id}:
+ * /api/checkpoints/user/{id}/{evtId}:
  *  get:
  *    security:
  *      - bearerAuth: []
@@ -113,6 +113,6 @@ router.get("/event/:id", validateToken, getCheckPointByEvent);
  *      400:
  *        description: Error al obtener los puntos de control
  */
-router.get("/user/:id", validateToken, getCheckPointByUser);
+router.get("/user/:id/:evtId", validateToken, getCheckPointByUser);
 
 export default router;
