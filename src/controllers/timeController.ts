@@ -4,6 +4,7 @@ import CheckPoint from "../models/check-point";
 import User from "../models/user";
 import Competitor from "../models/competitor";
 import Team from "../models/team";
+import Event from "../models/event";
 
 function isValidTime(time: string): boolean {
   const [hours, minutes, seconds] = time.split(":").map(Number);
@@ -73,6 +74,7 @@ export const getTimes = async (req: Request, res: Response) => {
         {
           model: CheckPoint,
           attributes: ["nombre", "kilometro"],
+          include:[{model:Event, attributes: ["nombre","id_evento"]}],
         },
       ],
     });

@@ -145,7 +145,7 @@ export const loginUser = async (req: Request, res: Response) => {
     },
     process.env.SECRET_KEY || "secret",
     {
-      expiresIn: "1800000", //30 minutes
+      expiresIn: "18000000", //30 minutes
     }
   );
 
